@@ -11,12 +11,6 @@ export const KNOWLEDGE_QUESTION_COUNT = 12;
 export const KNOWLEDGE_SECONDS = 30;
 
 /**
- * Students photograph the Reveal and walk away without dismissing it. Without this the
- * next student sits down facing the previous student's Reveal and starts the quiz as them.
- */
-export const REVEAL_IDLE_MS = 60_000;
-
-/**
  * How long a half-finished run sits untouched before the kiosk gives up on it and returns
  * to the boards, writing nothing.
  *

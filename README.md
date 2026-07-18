@@ -15,7 +15,7 @@ it.
 - Home links to How to Play, Personas, and the live boards.
 - The Persona Round has 12 untimed questions with no correct answers.
 - The Knowledge Round has 12 timed IT/CS questions and produces the Score.
-- An abandoned run writes nothing. The Reveal returns to the boards after 60 seconds.
+- An abandoned run writes nothing. The Reveal stays open until **DONE** is selected.
 
 ## Deploy to Vercel
 

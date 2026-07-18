@@ -10,7 +10,7 @@ import { Landing } from "@/components/landing";
 import { NameEntry } from "@/components/name-entry";
 import { PersonaRound } from "@/components/persona-round";
 import { Reveal } from "@/components/reveal";
-import { ABANDON_IDLE_MS, REVEAL_IDLE_MS } from "@/lib/constants";
+import { ABANDON_IDLE_MS } from "@/lib/constants";
 import { personaById, type PersonaId, type Trait } from "@/lib/personas";
 
 /** How often the idle boards pull fresh standings, so they are live all day. */
@@ -58,12 +58,6 @@ export function Kiosk({ boards }: { boards: BoardsData }) {
   }, [phase, router]);
 
   /*
-    Two idle timeouts, for two different problems.
-
-    On the Reveal: students photograph it and walk away without dismissing it, constantly.
-    Without the timeout the next student sits down facing the previous student's Name,
-    Persona and Score, and starts the quiz as them.
-
     On Name and the Persona Round: a student who wanders off halfway would otherwise wedge
     the kiosk on question four for the rest of the day, because nothing else there advances
     on its own. This is not a question timer and is never shown — the Persona Round is
@@ -76,10 +70,9 @@ export function Kiosk({ boards }: { boards: BoardsData }) {
   */
   const [activity, setActivity] = useState(0);
   useEffect(() => {
-    if (phase === "home" || phase === "boards" || phase === "knowledge") return;
+    if (phase !== "name" && phase !== "persona") return;
 
-    const limit = phase === "reveal" ? REVEAL_IDLE_MS : ABANDON_IDLE_MS;
-    const idle = setTimeout(toBoards, limit);
+    const idle = setTimeout(toBoards, ABANDON_IDLE_MS);
     return () => clearTimeout(idle);
   }, [phase, activity, toBoards]);
 
