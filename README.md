@@ -77,16 +77,14 @@ docker compose down      # stop after the fair
 The image contains only the production Next.js standalone server. Run `npm run seed` before
 fair day; the container does not fetch questions from Open Trivia DB.
 
-## Staff Mode
+## Admin
 
-On the boards, press and hold **MEI MEI** for two seconds, then enter `ADMIN_PASSWORD`.
+Open `/admin`, enter `ADMIN_PASSWORD`, then select **Clear Boards**.
 
-- **✕** permanently removes one Response from both boards.
 - **Clear Boards** permanently removes every Response, including Names and answers.
 - Knowledge Questions are never removed.
-- Refreshing or closing the tab relocks Staff Mode.
-- If `ADMIN_PASSWORD` is missing or incorrect, the quiz still runs but Staff Mode stays
-  locked.
+- If `ADMIN_PASSWORD` is missing or incorrect, the quiz still runs but the boards cannot be
+  cleared.
 
 ## Fair-day setup
 

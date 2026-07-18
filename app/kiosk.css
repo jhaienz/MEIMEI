@@ -333,9 +333,6 @@
 .mmq .boards-brand {
   font-family: var(--font-pixel), monospace;
   font-size: 34px;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
   background: linear-gradient(90deg, var(--pink), var(--pink2) 40%, var(--purple2));
   -webkit-background-clip: text;
   background-clip: text;
@@ -855,38 +852,8 @@
   color: var(--muted);
 }
 
-/* ---------------------------------------------------------------- staff */
+/* ---------------------------------------------------------------- admin */
 
-.mmq .staff-bar {
-  background: rgba(255, 47, 142, 0.14);
-  border: 1px solid var(--pink);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  font-size: 15px;
-  color: var(--pink2);
-}
-.mmq .staff-del {
-  border: 1px solid var(--pink);
-  background: rgba(255, 47, 142, 0.16);
-  color: #fff;
-  border-radius: 8px;
-  width: 40px;
-  height: 40px;
-  font-size: 17px;
-  flex-shrink: 0;
-}
-.mmq .staff-del:active {
-  transform: scale(0.9);
-}
-.mmq .staff-actions {
-  display: flex;
-  gap: 10px;
-}
 .mmq .staff-clear {
   border: 1px solid var(--pink);
   background: var(--pink);
@@ -937,10 +904,5 @@
   .mmq .steps-grid,
   .mmq .personas-grid {
     grid-template-columns: 1fr;
-  }
-  .mmq .staff-bar,
-  .mmq .staff-actions {
-    align-items: stretch;
-    flex-direction: column;
   }
 }

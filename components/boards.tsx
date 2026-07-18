@@ -1,9 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-
-import { clearBoards, removeResponse, unlockStaff } from "@/app/actions";
 import type { FactionBoardRow, RankBoardRow } from "@/lib/db";
 import type { PersonaId } from "@/lib/personas";
 
@@ -40,52 +36,17 @@ export function Boards({
   onHome: () => void;
   onStart: () => void;
 }) {
-  const router = useRouter();
-  const [staffPassword, setStaffPassword] = useState<string>();
-  const staffMode = staffPassword !== undefined;
-
-  const openStaffMode = async () => {
-    const password = window.prompt("Staff password");
-    if (password === null) return;
-    if (await unlockStaff(password)) setStaffPassword(password);
-    else window.alert("Incorrect staff password.");
-  };
-
   const busiest = Math.max(1, ...data.faction.map((row) => row.count));
   const totalResponses = data.faction.reduce((sum, row) => sum + row.count, 0);
 
   return (
     <div className="boards shell">
       <div className="boards-head">
-        <button type="button" className="boards-brand" onClick={() => void openStaffMode()}>
-          MEI MEI
-        </button>
+        <h1 className="boards-brand">MEI MEI</h1>
         <p className="boards-sub">
           Which one are you? · College of Computer Studies
         </p>
       </div>
-
-      {staffMode && (
-        <div className="staff-bar">
-          <span>Staff mode — tap ✕ to remove a Response. One tap, gone.</span>
-          <div className="staff-actions">
-            <button
-              className="btn staff-clear"
-              onClick={async () => {
-                if (!window.confirm("Permanently delete every Response and clear both boards?"))
-                  return;
-                await clearBoards(staffPassword);
-                router.refresh();
-              }}
-            >
-              Clear Boards
-            </button>
-            <button className="btn btn-ghost" onClick={() => setStaffPassword(undefined)}>
-              Done
-            </button>
-          </div>
-        </div>
-      )}
 
       <div className="boards-grid">
         <section className="board board-faction">
@@ -152,18 +113,6 @@ export function Boards({
                 </span>
               </span>
               <span className="rank-score">{row.score}/12</span>
-              {staffMode && (
-                <button
-                  className="staff-del"
-                  aria-label={`Remove ${row.name}`}
-                  onClick={async () => {
-                    await removeResponse(row.id, staffPassword);
-                    router.refresh();
-                  }}
-                >
-                  ✕
-                </button>
-              )}
             </div>
           ))}
         </section>
